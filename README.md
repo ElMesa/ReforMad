@@ -1,6 +1,3 @@
-# Heroku kickstart
+# ReforMad
 
-http://www.sitepoint.com/deploying-yeomanangular-app-heroku/
-
-npm install gzippo express --save
-
+Application developed for MediaLab Prado [TODO]INCLUDE_LINK event Visualizar15 [TODO]INCLUDE_LINK
