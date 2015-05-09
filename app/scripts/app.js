@@ -10,7 +10,7 @@
  */
 angular
   .module('reforMadApp', [
-    'ngRoute'
+    'ngRoute', 'leaflet-directive'
   ])
   .config(function ($routeProvider) {
     $routeProvider
@@ -21,6 +21,10 @@ angular
       .when('/about', {
         templateUrl: 'views/about.html',
         controller: 'AboutCtrl'
+      })
+      .when('/Map', {
+        templateUrl: 'views/map.html',
+        controller: 'MapCtrl'
       })
       .otherwise({
         redirectTo: '/'
