@@ -15,12 +15,7 @@ angular
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
-        templateUrl: 'views/main.html',
-        controller: 'MainCtrl'
-      })
-      .when('/about', {
-        templateUrl: 'views/about.html',
-        controller: 'AboutCtrl'
+        redirectTo: '/Map'
       })
       .when('/Map', {
         templateUrl: 'views/map.html',
