@@ -41,6 +41,6 @@
   },
   "scripts": {
     "test": "grunt test",
-    "postinstall": "echo postinstall time; ./node_modules/grunt-cli/bin/grunt build"
+    "postinstall": "echo postinstall time; ./node_modules/.bin/grunt build"
   }
 }
