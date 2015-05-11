@@ -201,7 +201,7 @@ function MapReforMad() {
         var pathId = 'locationAccuracy';
         var leafletPath = {
             id: pathId,
-            latlngs: { 
+            latlngs: {
                 lat: navigatorPosition.coords.latitude,
                 lng: navigatorPosition.coords.longitude
             },
@@ -215,12 +215,27 @@ function MapReforMad() {
     this.init();
 };
 
+function initToastr() {
+    toastr.options = {
+        //"closeButton": true,
+        "positionClass": "toast-bottom-full-width",
+        "showDuration": "300",
+        //"hideDuration": "0",
+        //"extendedTimeOut": "0",
+        //"timeOut": "0",
+    }
+}
+
 angular.module('reforMadApp')
-    .controller('MapCtrl', ['$scope', function($scope) {
+    .controller('MapCtrl', ['$scope', '$http', function($scope, $http) {
+
+        initToastr();
 
         $scope.reformadMap = new MapReforMad();
 
         $scope.user = new User();
+
+        $scope.testToastId = toastr['info']('Buscando tu posición para encontrar el lugar de recolecta...');
 
         $scope.userLocation = undefined;
         var deferred = $scope.user.locate();
@@ -248,6 +263,16 @@ angular.module('reforMadApp')
                     break;
             }
         });
+
+        $scope.twitterLogin = function () {
+
+            var auth_host = "http://localhost:8080";
+            var auth_requestTokenURL = auth_host + '/auth/requestToken';
+
+            $http.get(auth_requestTokenURL).success(function (data, status, headers, config) {
+                window.location = data;
+            });
+        }
 
     }]);
 

@@ -21,6 +21,10 @@ angular
         templateUrl: 'views/map.html',
         controller: 'MapCtrl'
       })
+      .when('/oauthCallback', {
+        templateUrl: 'views/oauthcallback.html',
+        controller: 'OauthcallbackCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });
