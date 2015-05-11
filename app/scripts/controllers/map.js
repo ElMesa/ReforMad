@@ -17,76 +17,33 @@ function User() {
     };
 
     this.locate = function locate() {
-        var deferred = $.Deferred();
+        self.locate_deferred = $.Deferred();
 
         if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(function success(position) {
-                console.log('locateUser() - SUCCESS - position: %O', position);
-                toastr['success']('Located with ' + position.coords.accuracy + ' meters accuracy');
-                deferred.resolve(position);
-            }, function handle_errors(error) {
-                switch (error.code) {
-                    case error.PERMISSION_DENIED:
-                        toastr['error']('User did not share geolocation data\nERROR: ' + error.message);
-                        break;
-                    case error.POSITION_UNAVAILABLE:
-                        toastr['error']('Could not detect current position\nERROR: ' + error.message);
-                        break;
-                    case error.TIMEOUT:
-                        toastr['error']('Retrieving position timed out\nERROR: ' + error.message);
-                        break;
-                    default:
-                        toastr['error']('Unknown error\nERROR: ' + error.message);
-                        break;
-                }
-            });
+
+            var options = {
+                enableHighAccuracy: true
+            };
+
+            navigator.geolocation.getCurrentPosition(self.locate_success, self.locate_error, options);
         } else {
             toastr['error']('Browser not capable of HTML5 geolocation');
         }
 
-        return deferred;
+        return self.locate_deferred;
     };
+
+    this.locate_success = function locate_success(position) {
+        console.log('locateUser() - SUCCESS - position: %O', position);
+        self.locate_deferred.resolve(position);
+    }
+
+    this.locate_error = function locate_error(error) {
+        self.locate_deferred.reject(error);
+    }
 
     this.init();
 }
-
-function locateUser() {
-    var deferred = $.Deferred();
-
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(function success(position) {
-            console.log('locateUser() - SUCCESS - position: %O', position);
-            toastr['success']('Located with ' + position.coords.accuracy + ' meters accuracy');
-            deferred.resolve(position);
-        }, function handle_errors(error) {
-            switch (error.code) {
-                case error.PERMISSION_DENIED:
-                    alert('user did not share geolocation data');
-                    break;
-
-                case error.POSITION_UNAVAILABLE:
-                    alert('could not detect current position');
-                    break;
-
-                case error.TIMEOUT:
-                    alert('retrieving position timed out');
-                    break;
-
-                default:
-                    alert('unknown error');
-                    break;
-            }
-        });
-    } else {
-        console.log('Warning: Not geolocation capable');
-    }
-
-    return deferred;
-};
-
-/*
-
- */
 
 function Map() {
 
@@ -96,6 +53,7 @@ function Map() {
         this.initDefaults();
         this.initIcons();
         this.initMarkers();
+        this.initPaths();
 
         this.setCenter(this.default.center);
     };
@@ -172,6 +130,39 @@ function Map() {
         }
     };
 
+    this.initPaths = function initPaths() {
+        self.paths = {};
+        self.paths.active = {};
+
+        self.paths.template = {
+            type: "circle",
+            radius: 30,
+            weight: 1,
+            //fillColor: 'green',
+            //latlngs: 
+        }
+    }
+
+    this.pathNew = function pathNew(override) {
+        var templateOverrided = $.extend({}, self.paths.template, override);
+        return templateOverrided;
+    };
+
+    this.pathSet = function markerSet(path) {
+        var settedPath = undefined;
+        if (path != undefined && path.id != undefined && self.paths != undefined) {
+            self.paths[path.id] = path;
+            settedPath = path;
+        }
+        return settedPath
+    };
+
+    this.pathActivate = function pathActivate(id) {
+        if (id != undefined && self.paths != undefined && self.paths[id] != undefined && self.paths.active != undefined) {
+            self.paths.active[id] = self.paths[id];
+        }
+    };
+
     this.setCenter = function setCenter(center) {
         var defaultOverride;
         self.center = $.extend(defaultOverride, self.default.center, center);
@@ -193,7 +184,7 @@ function MapReforMad() {
         var leafletCenter = {
             lat: navigatorPosition.coords.latitude,
             lng: navigatorPosition.coords.longitude,
-            zoom: 15
+            zoom: 18
         }
 
         self.map.setCenter(leafletCenter);
@@ -206,6 +197,19 @@ function MapReforMad() {
         }
         self.map.markerSet(leafletMarker);
         self.map.markerActivate(markerId);
+
+        var pathId = 'locationAccuracy';
+        var leafletPath = {
+            id: pathId,
+            latlngs: { 
+                lat: navigatorPosition.coords.latitude,
+                lng: navigatorPosition.coords.longitude
+            },
+            radius: navigatorPosition.coords.accuracy
+        }
+        leafletPath = self.map.pathNew(leafletPath);
+        self.map.pathSet(leafletPath);
+        self.map.pathActivate(pathId);
     };
 
     this.init();
@@ -216,25 +220,46 @@ angular.module('reforMadApp')
 
         $scope.reformadMap = new MapReforMad();
 
+        $scope.user = new User();
+
         $scope.userLocation = undefined;
-        var deferred = locateUser();
+        var deferred = $scope.user.locate();
         deferred.done(function(position) {
             console.log('MapCtrl - locateUser() - PROMISE SUCCESS - position: %O', position);
-            /*
-            $scope.userLocation = position;
-
-            var leafletCenter = {
-                lat: position.coords.latitude,
-                lng: position.coords.longitude,
-                zoom: 15
-            }
-
-            $scope.map.setCenter(leafletCenter);
-            */
+            toastr['success']('Located with ' + position.coords.accuracy + ' meters accuracy');
 
             $scope.reformadMap.updateUserLocation(position);
 
             $scope.$apply();
         });
+        deferred.fail(function(error) {
+            switch (error.code) {
+                case error.PERMISSION_DENIED:
+                    toastr['error']('User did not share geolocation data\nERROR: ' + error.message);
+                    break;
+                case error.POSITION_UNAVAILABLE:
+                    toastr['error']('Could not detect current position\nERROR: ' + error.message);
+                    break;
+                case error.TIMEOUT:
+                    toastr['error']('Retrieving position timed out\nERROR: ' + error.message);
+                    break;
+                default:
+                    toastr['error']('Unknown error\nERROR: ' + error.message);
+                    break;
+            }
+        });
 
     }]);
+
+/*
+circle: {
+                    type: "circle",
+                    radius: 500 * 1000,
+                    latlngs: europeCapitals.Brussels
+                }
+circleMarker: {
+                    type: "circleMarker",
+                    radius: 50,
+                    latlngs: europeCapitals.Rome
+                }
+ */
