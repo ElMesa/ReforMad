@@ -14,7 +14,7 @@ function User() {
 
     this.init = function init() {
 
-    }
+    };
 
     this.locate = function locate() {
         var deferred = $.Deferred();
@@ -22,16 +22,30 @@ function User() {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(function success(position) {
                 console.log('locateUser() - SUCCESS - position: %O', position);
+                toastr['success']('Located with ' + position.coords.accuracy + ' meters accuracy');
                 deferred.resolve(position);
-            }, function error() {
-                console.log('ERROR: While geolocating');
+            }, function handle_errors(error) {
+                switch (error.code) {
+                    case error.PERMISSION_DENIED:
+                        toastr['error']('User did not share geolocation data\nERROR: ' + error.message);
+                        break;
+                    case error.POSITION_UNAVAILABLE:
+                        toastr['error']('Could not detect current position\nERROR: ' + error.message);
+                        break;
+                    case error.TIMEOUT:
+                        toastr['error']('Retrieving position timed out\nERROR: ' + error.message);
+                        break;
+                    default:
+                        toastr['error']('Unknown error\nERROR: ' + error.message);
+                        break;
+                }
             });
         } else {
-            console.log('Warning: Not geolocation capable');
+            toastr['error']('Browser not capable of HTML5 geolocation');
         }
 
         return deferred;
-    }
+    };
 
     this.init();
 }
@@ -42,16 +56,37 @@ function locateUser() {
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function success(position) {
             console.log('locateUser() - SUCCESS - position: %O', position);
+            toastr['success']('Located with ' + position.coords.accuracy + ' meters accuracy');
             deferred.resolve(position);
-        }, function error() {
-            console.log('ERROR: While geolocating');
+        }, function handle_errors(error) {
+            switch (error.code) {
+                case error.PERMISSION_DENIED:
+                    alert('user did not share geolocation data');
+                    break;
+
+                case error.POSITION_UNAVAILABLE:
+                    alert('could not detect current position');
+                    break;
+
+                case error.TIMEOUT:
+                    alert('retrieving position timed out');
+                    break;
+
+                default:
+                    alert('unknown error');
+                    break;
+            }
         });
     } else {
         console.log('Warning: Not geolocation capable');
     }
 
     return deferred;
-}
+};
+
+/*
+
+ */
 
 function Map() {
 
@@ -72,7 +107,7 @@ function Map() {
             lng: -3.703517,
             zoom: 11
         };
-    }
+    };
 
     this.initIcons = function initIcons() {
         //var iconSize = [22, 31];
@@ -96,12 +131,12 @@ function Map() {
         this.icons.userLocation = {};
         this.icons.userLocation.icon = 'check';
         this.icons.userLocation.markerColor = 'green';
-    }
+    };
 
     this.iconNew = function iconNew(iconOverride) {
         var iconTemplateOverrided = $.extend({}, self.icons.template, iconOverride);
         return iconTemplateOverrided;
-    }
+    };
 
     this.initMarkers = function initMarkers() {
         self.markers = {};
@@ -115,12 +150,12 @@ function Map() {
             //draggable: true,
             //data: {} //Custom data holder
         }
-    }
+    };
 
     this.markerNew = function markerNew(markerOverride) {
         var templateOverrided = $.extend({}, self.markers.template, markerOverride);
         return templateOverrided;
-    }
+    };
 
     this.markerSet = function markerSet(marker) {
         var settedMarker = undefined;
@@ -129,22 +164,22 @@ function Map() {
             settedMarker = marker;
         }
         return settedMarker
-    }
+    };
 
     this.markerActivate = function markerActivate(markerId) {
         if (markerId != undefined && self.markers != undefined && self.markers[markerId] != undefined && self.markers.active != undefined) {
             self.markers.active[markerId] = self.markers[markerId];
         }
-    }
+    };
 
     this.setCenter = function setCenter(center) {
         var defaultOverride;
         self.center = $.extend(defaultOverride, self.default.center, center);
         return self.center;
-    }
+    };
 
     this.init();
-}
+};
 
 function MapReforMad() {
 
@@ -152,7 +187,7 @@ function MapReforMad() {
 
     this.init = function init() {
         this.map = new Map();
-    }
+    };
 
     this.updateUserLocation = function updateUserLocation(navigatorPosition) {
         var leafletCenter = {
@@ -165,16 +200,16 @@ function MapReforMad() {
 
         var markerId = 'userLocation';
         var leafletMarker = {
-        	id: markerId,
-        	lat: navigatorPosition.coords.latitude,
+            id: markerId,
+            lat: navigatorPosition.coords.latitude,
             lng: navigatorPosition.coords.longitude,
         }
         self.map.markerSet(leafletMarker);
         self.map.markerActivate(markerId);
-    }
+    };
 
     this.init();
-}
+};
 
 angular.module('reforMadApp')
     .controller('MapCtrl', ['$scope', function($scope) {
@@ -195,9 +230,9 @@ angular.module('reforMadApp')
             }
 
             $scope.map.setCenter(leafletCenter);
-			*/
-		
-			$scope.reformadMap.updateUserLocation(position);
+            */
+
+            $scope.reformadMap.updateUserLocation(position);
 
             $scope.$apply();
         });
