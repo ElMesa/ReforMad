@@ -5,7 +5,8 @@ function DataGenerator() {
     var self = this;
 
     this.init = function init() {
-        this.columns = ['date', 'time', 'latitude', 'longitude', 'user', 'district', 'neighbourhood', 'address'];
+        //this.columns = ['date', 'time', 'latitude', 'longitude', 'user', 'district', 'neighbourhood', 'address'];
+        this.columns = ['datetime', 'latitude', 'longitude', 'user', 'district', 'neighbourhood', 'address'];
         this.colIndex = this.generateColIndex(this.columns);
     }
 
@@ -33,18 +34,27 @@ function DataGenerator() {
         var row = [];
         var data = {};
 
-        data.date = chance.date({
+        /*
+        var date = chance.date({
             string: true,
-            american: false
+            american: false,
+            year: 2014
         });
+        */
+        var datetime = chance.date();
+        datetime = moment(datetime).year(2014);
+        datetime = moment(datetime).format('YYYY-MM-DD HH:mm:ss');
+        data.datetime = datetime;
 
+        /*
         var hour = chance.hour({
             twentyfour: true
         });
         var minute = chance.minute();
         var second = chance.second();
         data.time = hour + ':' + minute + ':' + second;
-
+        */
+       
         //Madrid
         //top left: 40.506277, -3.841551
         //bottom right: 40.319571, -3.565464
@@ -127,7 +137,8 @@ angular.module('reforMadApp')
     		var seconds = date.getSeconds();
     		var dateString = year + '-' + month + '-' + day + '-' + hours + '-' + minutes + '-' + seconds;
 
-            hiddenElement.href = 'data:attachment/csv,' + $scope.csv.replace(/\n/g,'%0A');
+            //hiddenElement.href = 'data:attachment/csv,' + $scope.csv.replace(/\n/g,'%0A');
+            hiddenElement.href = 'data:attachment/csv,' + encodeURIComponent($scope.csv);
             hiddenElement.target = '_blank';
             hiddenElement.download = 'ReforMad-DataGenerator-v1-' + dateString +'.csv';
             hiddenElement.click();
