@@ -25,6 +25,10 @@ angular
         templateUrl: 'views/oauthcallback.html',
         controller: 'OauthcallbackCtrl'
       })
+      .when('/DataGenerator', {
+        templateUrl: 'views/datagenerator.html',
+        controller: 'DatageneratorCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });
