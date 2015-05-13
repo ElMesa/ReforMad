@@ -10,13 +10,16 @@ function Issue(API) {
 	this.send = function send(user) {
 		var deferred = $.Deferred();
 
+		self.creation_date = moment().format('YYYY-MM-DD HH:mm:ss');
+
 		user.getPosition().done(function (position) {
 			self.latitude = position.latitude;
 			self.longitude = position.longitude;
 
 			var data = {
 				latitude: self.latitude,
-				longitude: self.longitude
+				longitude: self.longitude,
+				creation_date: self.creation_date
 			}
 
 			var url = API.getBaseURL() + 'issues';
