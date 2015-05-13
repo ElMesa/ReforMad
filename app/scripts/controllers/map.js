@@ -7,44 +7,6 @@
  * # MapCtrl
  * Controller of the reforMadApp
  */
-
-function User() {
-
-    var self = this;
-
-    this.init = function init() {
-
-    };
-
-    this.locate = function locate() {
-        self.locate_deferred = $.Deferred();
-
-        if (navigator.geolocation) {
-
-            var options = {
-                enableHighAccuracy: true
-            };
-
-            navigator.geolocation.getCurrentPosition(self.locate_success, self.locate_error, options);
-        } else {
-            toastr['error']('Browser not capable of HTML5 geolocation');
-        }
-
-        return self.locate_deferred;
-    };
-
-    this.locate_success = function locate_success(position) {
-        console.log('locateUser() - SUCCESS - position: %O', position);
-        self.locate_deferred.resolve(position);
-    }
-
-    this.locate_error = function locate_error(error) {
-        self.locate_deferred.reject(error);
-    }
-
-    this.init();
-}
-
 function Map() {
 
     var self = this;
@@ -218,7 +180,7 @@ function MapReforMad() {
 function initToastr() {
     toastr.options = {
         //"closeButton": true,
-        "positionClass": "toast-bottom-full-width",
+        //"positionClass": "toast-bottom-full-width",
         "showDuration": "300",
         //"hideDuration": "0",
         //"extendedTimeOut": "0",
@@ -227,13 +189,14 @@ function initToastr() {
 }
 
 angular.module('reforMadApp')
-    .controller('MapCtrl', ['$scope', '$http', function($scope, $http) {
+    .controller('MapCtrl', ['$scope', '$http', 'User', function($scope, $http, User) {
 
         initToastr();
 
         $scope.reformadMap = new MapReforMad();
 
-        $scope.user = new User();
+        //$scope.user = new User();
+        $scope.user = User;
 
         $scope.testToastId = toastr['info']('Buscando tu posición para encontrar el lugar de recolecta...');
 

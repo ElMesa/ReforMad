@@ -1,6 +1,7 @@
 <!doctype html>
 <html class="no-js">
-  <head>
+
+<head>
     <meta charset="utf-8">
     <title></title>
     <meta name="description" content="">
@@ -17,30 +18,57 @@
     <!-- build:css(.tmp) styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
-  </head>
-  <body ng-app="reforMadApp">
+</head>
+
+<body ng-app="reforMadApp" ng-controller="MainCtrl">
     <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
-
+    <!-- Fixed navbar -->
+    <!-- 
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">ReforMad</a>
+            </div>
+            <div id="navbar" class="collapse navbar-collapse pull-right">
+                <ul class="nav navbar-nav">
+                    <li class="Map"><a href="#">Map</a></li>
+                    <li><a href="#DataGenerator">Data Generator</a></li>
+                    <li><button type="button" class="btn btn-success">{{test}}</button></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <ul class="nav nav-pills pull-right">
+                <li class="active"><a ng-href="#Map">Map</a></li>
+                <li><a ng-href="#DataGenerator">DataGenerator</a></li>
+                <li>
+                    <button class="btn btn-info" ng-click="enableLocalMode()">Local mode</button>
+                </li>
+            </ul>
+            <h3 class="text-muted">ReforMad</h3>
+        </div>
+    </nav>
     <!-- Add your site or application content here -->
     <div class="container">
-      <div class="header">
-        <ul class="nav nav-pills pull-right">
-          <li class="active"><a ng-href="#Map">Map</a></li>
-          <li class="active"><a ng-href="#DataGenerator">DataGenerator</a></li>
-        </ul>
-        <h3 class="text-muted">reforMad</h3>
-      </div>
-
-      <div id="view_mainContent" ng-view=""></div>
-
-      <div class="footer">
-        <p><span class="glyphicon glyphicon-heart"></span> from the Yeoman team</p>
-      </div>
+        <div id="view_mainContent" ng-view=""></div>
     </div>
-
-
+    <div class="footer">
+        <div class="container">
+            <!--<p><span class="glyphicon glyphicon-heart"></span> from the Yeoman team</p>-->
+            <button type="button" class="btn btn-danger btn-block" ng-click="send()">¡Que sucio!</button>
+        </div>
+    </div>
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
     <!--
      <script>
@@ -53,14 +81,12 @@
        ga('send', 'pageview');
     </script>
     -->
-
     <!-- build:js(.) scripts/oldieshim.js -->
     <!--[if lt IE 9]>
     <script src="bower_components/es5-shim/es5-shim.js"></script>
     <script src="bower_components/json3/lib/json3.js"></script>
     <![endif]-->
     <!-- endbuild -->
-
     <!-- build:js(.) scripts/vendor.js -->
     <!-- bower:js -->
     <script src="bower_components/jquery/dist/jquery.js"></script>
@@ -75,17 +101,18 @@
     <script src="bower_components/moment/moment.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
-
-        <!-- build:js({.tmp,app}) scripts/scripts.js -->
-        <script src="scripts/app.js"></script>
-        <script src="scripts/controllers/main.js"></script>
-        <script src="scripts/controllers/map.js"></script>
-        <script src="scripts/controllers/oauthcallback.js"></script>
-        <script src="scripts/controllers/datagenerator.js"></script>
-        <!-- endbuild -->
-
-        <script src="scripts/debug/debug-angularConsoleDebug.js"></script>
-        <script src="scripts/debug/debug.js"></script>
-    
+    <!-- build:js({.tmp,app}) scripts/scripts.js -->
+    <script src="scripts/app.js"></script>
+    <script src="scripts/controllers/main.js"></script>
+    <script src="scripts/controllers/map.js"></script>
+    <script src="scripts/controllers/oauthcallback.js"></script>
+    <script src="scripts/controllers/datagenerator.js"></script>
+    <script src="scripts/services/user.js"></script>
+    <script src="scripts/services/issue.js"></script>
+    <script src="scripts/services/api.js"></script>
+    <!-- endbuild -->
+    <script src="scripts/debug/debug-angularConsoleDebug.js"></script>
+    <script src="scripts/debug/debug.js"></script>
 </body>
+
 </html>

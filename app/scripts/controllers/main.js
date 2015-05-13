@@ -8,10 +8,17 @@
  * Controller of the reforMadApp
  */
 angular.module('reforMadApp')
-  .controller('MainCtrl', function ($scope) {
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
-  });
+  .controller('MainCtrl', ['$scope', 'User', 'Issue', 'API', function ($scope, User, Issue, API) {
+    
+    $scope.user = User;
+	$scope.issue = Issue;    
+
+    $scope.send = function send() {
+    	$scope.issue.send($scope.user);
+    }
+
+    $scope.enableLocalMode = function enableLocalMode() {
+    	API.setHost('local');
+    }
+
+  }]);
