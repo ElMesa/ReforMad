@@ -29,6 +29,10 @@ angular
         templateUrl: 'views/datagenerator.html',
         controller: 'DatageneratorCtrl'
       })
+      .when('/CartoDB', {
+        templateUrl: 'views/cartodb.html',
+        controller: 'CartodbCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });
