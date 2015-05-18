@@ -1,30 +1,36 @@
-html, body, .container, #view_mainContent {
-	height: 100%;
+html,
+body,
+.container,
+#view_mainContent {
+    height: 100%;
 }
-
-
 /* Sticky footer styles
 ** from: http://getbootstrap.com/examples/sticky-footer-navbar/
 -------------------------------------------------- */
+
 html {
-  position: relative;
-  min-height: 100%;
-}
-body {
-  /* Margin bottom by footer height */
-  /*margin-bottom: 60px;*/
-  padding-top: 70px;
-  padding-bottom: 70px;
-}
-.footer {
-  /*position: absolute;*/
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  /* Set the fixed height of the footer here */
-  height: 60px;
+    position: relative;
+    min-height: 100%;
 }
 
+body {
+    /* Margin bottom by footer height */
+    /*margin-bottom: 60px;*/
+    
+    padding-top: 70px;
+    padding-bottom: 70px;
+}
+
+.footer {
+    /*position: absolute;*/
+    
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    /* Set the fixed height of the footer here */
+    
+    height: 60px;
+}
 /********************************************************************
 ***
 *** Page Theme
@@ -35,60 +41,104 @@ body {
 *** Brown-dark: #403000;
 *** Brown-lighter: #C7B16F;
 ********************************************************************/
+
 .color-yellow {
-  color: #FFC000;
+    color: #FFC000;
 }
+
 .color-yellow-lighter {
-  color: #FCEEC2;
+    color: #FCEEC2;
 }
+
 .color-orange {
-  color: #EA6220;
+    color: #EA6220;
 }
+
 .color-brown-dark {
-  color: #403000;
+    color: #403000;
 }
+
 .color-brown-lighter {
-  color: #C7B16F;
+    color: #C7B16F;
 }
 
-.navbar-default {
-  
-}
+.navbar-default {}
+
 body {
-  background-color: #FFC000;
+    background-color: #FFC000;
 }
-
 /*
 nav h3 {
   margin-left: auto;
   margin-right: auto;
 }
 */
+
 .reformadLogo {
-  margin-right: 20px;
-
-  background-color: #FCEEC2;
-
-  padding: 5px;
-  border-width: 1px;
-  border-color: #EA6220;
-  border-style: solid;
-  border-radius: 10px;
+    margin-right: 20px;
+    background-color: #FCEEC2;
+    padding: 5px;
+    border-width: 1px;
+    border-color: #EA6220;
+    border-style: solid;
+    border-radius: 10px;
 }
+
 .bdebasuraLogo {
-  margin-left: 20px;
-
-  background-color: #C7B16F;
-
-  padding: 5px;
-  border-width: 1px;
-  border-color: #403000;
-  border-style: solid;
-  border-radius: 10px;
+    margin-left: 20px;
+    background-color: #C7B16F;
+    padding: 5px;
+    border-width: 1px;
+    border-color: #403000;
+    border-style: solid;
+    border-radius: 10px;
 }
 
 .btn-reformad {
-  color: #403000;
-  background-color: #EA6220;
-  border-color: #403000;
+    color: #403000;
+    background-color: #EA6220;
+    border-color: #403000;
+}
+/* from:http://stackoverflow.com/questions/13955163/imitating-a-blink-tag-with-css3-animations; */
+
+.blink:not(:hover) {
+    animation: blink 2s infinite;
+    -webkit-animation: blink 2s infinite;
+}
+
+@keyframes blink {
+    to {
+        background-color: #EB7F4B;
+    }
+}
+
+@-webkit-keyframes blink {
+    to {
+        background-color: #EB7F4B;
+    }
+}
+
+.btn-reformad:hover {
+    /*
+  transition: background-color 2s;
+  -webkit-transition: background-color 2s;
+  background-color: #33FF41;
+  */
+    
+    animation: sucioOnHover 1s;
+    animation-fill-mode:forwards;
+    -webkit-animation: sucioOnHover 1s;
+    -webkit-animation-fill-mode:forwards;
+}
+
+@keyframes sucioOnHover {
+    to {
+        background-color: #33FF41;
+    }
+}
+
+@-webkit-keyframes sucioOnHover {
+    to {
+        background-color: #33FF41;
+    }
 }

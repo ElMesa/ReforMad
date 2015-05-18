@@ -100,7 +100,7 @@ function Map() {
             lat: undefined,
             lng: undefined,
             icon: self.iconNew(), //self.icons.template
-            message: '<p>Drag the marker to the exact location</p>',
+            message: '<p>Para confirmar que hay suciedad a tu alrededor pulsa al botón inferior</p>',
             //draggable: true,
             //data: {} //Custom data holder
         }
@@ -233,31 +233,33 @@ angular.module('reforMadApp')
         //$scope.user = new User();
         $scope.user = User;
 
-        $scope.testToastId = toastr['info']('Buscando tu posición para encontrar el lugar de recolecta...');
+        $scope.testToastId = toastr['info']('Buscando el lugar a limpiar, por favor, espere.');
 
         $scope.userLocation = undefined;
         var deferred = $scope.user.locate();
         deferred.done(function(position) {
             console.log('MapCtrl - locateUser() - PROMISE SUCCESS - position: %O', position);
-            toastr['success']('Located with ' + position.coords.accuracy + ' meters accuracy');
+            //toastr['success']('Located with ' + position.coords.accuracy + ' meters accuracy');
+            toastr['success']('Listo! Ya puedes pedir que limpien este lugar');
 
             $scope.reformadMap.updateUserLocation(position);
 
             $scope.$apply();
         });
         deferred.fail(function(error) {
+            toastr['error']('No ha sido posible localizar el lugar a limpiar, disculpe las molestias.');
             switch (error.code) {
                 case error.PERMISSION_DENIED:
-                    toastr['error']('User did not share geolocation data\nERROR: ' + error.message);
+                    //toastr['error']('User did not share geolocation data\nERROR: ' + error.message);
                     break;
                 case error.POSITION_UNAVAILABLE:
-                    toastr['error']('Could not detect current position\nERROR: ' + error.message);
+                    //toastr['error']('Could not detect current position\nERROR: ' + error.message);
                     break;
                 case error.TIMEOUT:
-                    toastr['error']('Retrieving position timed out\nERROR: ' + error.message);
+                    //toastr['error']('Retrieving position timed out\nERROR: ' + error.message);
                     break;
                 default:
-                    toastr['error']('Unknown error\nERROR: ' + error.message);
+                    //toastr['error']('Unknown error\nERROR: ' + error.message);
                     break;
             }
         });
