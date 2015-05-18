@@ -13,6 +13,7 @@ function Map() {
 
     this.init = function init() {
         this.initDefaults();
+        this.initTiles();
         this.initIcons();
         this.initMarkers();
         this.initPaths();
@@ -29,18 +30,51 @@ function Map() {
         };
     };
 
+    this.initTiles = function initTiles() {
+        
+        this.tiles = {
+            osm: {
+                url: "http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+                options: {
+                    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                }
+            },
+            mapboxDark: {
+                url: "https://dnv9my2eseobd.cloudfront.net/v3/cartodb.map-4xtxp73f/{z}/{x}/{y}.png",
+                options: {
+                    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> | &copy; <a href="https://www.mapbox.com/about/maps/">MapBox</a> contributors'
+                }
+            }
+        }
+
+        this.tiles.active = this.tiles.mapboxDark;
+
+    }
+
     this.initIcons = function initIcons() {
         //var iconSize = [22, 31];
 
+        /*
+        iconUrl: 'img/leaf-green.png',
+        shadowUrl: 'img/leaf-shadow.png',
+        iconSize:     [38, 95], // size of the icon
+        shadowSize:   [50, 64], // size of the shadow
+        iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+        shadowAnchor: [4, 62],  // the same for the shadow
+        popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+         */
+
         this.icons = {};
         this.icons.template = {
+            iconUrl: 'images/trashcan-icon.png',
+            iconSize: [32, 42],
             //iconSize: iconSize,
             //iconAnchor: [(iconSize[0] / 2), iconSize[1]],
             //popupAnchor: [0, -iconSize[1]]
-            type: 'awesomeMarker',
-            prefix: 'fa',
-            icon: 'check',
-            markerColor: 'green'
+            //type: 'awesomeMarker',
+            //prefix: 'fa',
+            //icon: 'check',
+            //markerColor: 'green'
         };
 
         //this.icons.issue.state.INPROGRESS.icon = 'cog';
@@ -157,6 +191,7 @@ function MapReforMad() {
             lat: navigatorPosition.coords.latitude,
             lng: navigatorPosition.coords.longitude,
         }
+        leafletMarker = self.map.markerNew(leafletMarker);
         self.map.markerSet(leafletMarker);
         self.map.markerActivate(markerId);
 
@@ -171,7 +206,7 @@ function MapReforMad() {
         }
         leafletPath = self.map.pathNew(leafletPath);
         self.map.pathSet(leafletPath);
-        self.map.pathActivate(pathId);
+        //self.map.pathActivate(pathId);
     };
 
     this.init();
@@ -227,12 +262,12 @@ angular.module('reforMadApp')
             }
         });
 
-        $scope.twitterLogin = function () {
+        $scope.twitterLogin = function() {
 
             var auth_host = "http://localhost:8080";
             var auth_requestTokenURL = auth_host + '/auth/requestToken';
 
-            $http.get(auth_requestTokenURL).success(function (data, status, headers, config) {
+            $http.get(auth_requestTokenURL).success(function(data, status, headers, config) {
                 window.location = data;
             });
         }

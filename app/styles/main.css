@@ -24,3 +24,71 @@ body {
   /* Set the fixed height of the footer here */
   height: 60px;
 }
+
+/********************************************************************
+***
+*** Page Theme
+***
+*** Dark orange: #EA6220;
+*** Yellow: #FFC000;
+*** Yellow-lighter: #FCEEC2;
+*** Brown-dark: #403000;
+*** Brown-lighter: #C7B16F;
+********************************************************************/
+.color-yellow {
+  color: #FFC000;
+}
+.color-yellow-lighter {
+  color: #FCEEC2;
+}
+.color-orange {
+  color: #EA6220;
+}
+.color-brown-dark {
+  color: #403000;
+}
+.color-brown-lighter {
+  color: #C7B16F;
+}
+
+.navbar-default {
+  
+}
+body {
+  background-color: #FFC000;
+}
+
+/*
+nav h3 {
+  margin-left: auto;
+  margin-right: auto;
+}
+*/
+.reformadLogo {
+  margin-right: 20px;
+
+  background-color: #FCEEC2;
+
+  padding: 5px;
+  border-width: 1px;
+  border-color: #EA6220;
+  border-style: solid;
+  border-radius: 10px;
+}
+.bdebasuraLogo {
+  margin-left: 20px;
+
+  background-color: #C7B16F;
+
+  padding: 5px;
+  border-width: 1px;
+  border-color: #403000;
+  border-style: solid;
+  border-radius: 10px;
+}
+
+.btn-reformad {
+  color: #403000;
+  background-color: #EA6220;
+  border-color: #403000;
+}

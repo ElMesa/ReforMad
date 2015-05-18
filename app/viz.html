@@ -1,0 +1,65 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="http://libs.cartocdn.com/cartodb.js/v3/3.14/themes/css/cartodb.css" />
+    <script src="http://libs.cartocdn.com/cartodb.js/v3/3.14/cartodb.js"></script>
+    <style>
+    html,
+    body {
+        width: 100%;
+        height: 100%;
+        padding: 0;
+        margin: 0;
+    }
+    
+    #cartodb-map {
+        width: 100%;
+        height: 100%;
+        background: black;
+    }
+    </style>
+    <script>
+    var map;
+
+    function init() {
+        // initiate leaflet map
+        
+        vizjson = 'https://elmesamola.cartodb.com/api/v2/viz/8d50dfd4-fbef-11e4-8fbf-0e853d047bba/viz.json';
+        
+        map = new L.Map('cartodb-map', {
+            center: [40.416955, -3.703517],
+            zoom: 11
+        })
+
+        var layers_base = {};
+        var layers_overlays = {};
+
+        layers_base.background = L.tileLayer('https://dnv9my2eseobd.cloudfront.net/v3/cartodb.map-4xtxp73f/{z}/{x}/{y}.png', {
+            attribution: 'Mapbox <a href="http://mapbox.com/about/maps" target="_blank">Terms &amp; Feedback</a>'
+        }).addTo(map);
+        
+        var layerUrl = 'https://elmesamola.cartodb.com/api/v2/viz/e5b0d596-fbd9-11e4-b9ed-0e853d047bba/viz.json';
+        //var layerUrl = 'http://documentation.cartodb.com/api/v2/viz/236085de-ea08-11e2-958c-5404a6a683d5/viz.json';
+        layers_overlays.cartodb = cartodb.createLayer(map, vizjson)
+            .addTo(map)
+            .on('done', function(layer) {
+                // change the query for the first layer
+                var subLayerOptions = {
+                    sql: "SELECT * FROM example_cartodbjs_1 where adm0_a3 = 'USA'",
+                    cartocss: "#example_cartodbjs_1{marker-fill: #109DCD; marker-width: 5; marker-line-color: white; marker-line-width: 0;}"
+                }
+                layer.getSubLayer(0).set(subLayerOptions);
+            }).on('error', function() {
+                //log the error
+            });
+
+        //L.control.layers(layers_base, layers_overlays).addTo(map);
+    }
+    </script>
+</head>
+
+<body onload="init()">
+    <div id='cartodb-map'></div>
+</body>
+
+</html>
