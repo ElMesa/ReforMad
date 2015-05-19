@@ -66,7 +66,7 @@ function Map() {
 
         this.icons = {};
         this.icons.template = {
-            iconUrl: 'images/trashcan-icon.png',
+            iconUrl: 'trashcan-icon.png',
             iconSize: [32, 42],
             //iconSize: iconSize,
             //iconAnchor: [(iconSize[0] / 2), iconSize[1]],
