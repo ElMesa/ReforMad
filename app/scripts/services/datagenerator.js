@@ -169,7 +169,10 @@ function DataGenerator() {
         */
         var datetime = chance.date();
         datetime = moment(datetime).year(2014);
-        datetime = moment(datetime).format('YYYY-MM-DD HH:mm:ss');
+        datetime = moment(datetime).hour(chance.hour({twentyfour: true}));
+        datetime = moment(datetime).format('YYYY-MM-DDTHH:mm:ss');
+        //datetime = moment(datetime).format(); //Default format: ISO-8601 
+        
         data.datetime = datetime;
 
         /*
