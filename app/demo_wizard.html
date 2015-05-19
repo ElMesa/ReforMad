@@ -12,6 +12,8 @@
     <title>Fixed Top Navbar Example for Bootstrap</title>
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="demo_wizard.css" />
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -19,199 +21,319 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-    <style>
-    body {
-        padding-top: 70px;
-    }
-    
-    .container {
-        margin-left: 15px;
-        margin-right: 15px;
-    }
-    
-    .tableauPlaceholder {
-        width: auto;
-        height: auto;
-        margin-left: auto;
-        margin-right: auto;
-    }
-    </style>
 </head>
 
 <body>
     <!-- Fixed navbar -->
-    <!-- 
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#">Project name</a>
+            <!-- 
+            <ul class="nav nav-pills">
+                <li>
+                    <a href="">
+                        <h3 class="text-muted"><span class="reformadLogo">
+                        <img src="images/reformad-logo-nobackground.png" style="width: 26px; height: 26px">
+                        <b><span class="color-yellow">Refor</span><span class="color-orange">Mad</span></b>
+                    </span></h3>
+                    </a>
+                </li>
+
+                <form class="navbar-form navbar-left">
+                    <button onClick="pagesManager.goToPrevious()" type="button" class="btn btn-warning"><i class="fa fa-arrow-left fa-2"></i> Ver apartado anterior</button>
+                    
+                    <button onClick="pagesManager.goToNext()" type="button" class="btn btn-warning">Ver siguiente apartado <i class="fa fa-arrow-right fa-2"></i></button>
+                </form>
+            </ul>
+
+            <div>
+                <h1>Apartado: <span id="sectionHeader"></span></h1>
+                <p>Descripción: <span id="sectionDescription"></span></p>
             </div>
-            <div id="navbar" class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li class="active"><a href="#">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
-                        <ul class="dropdown-menu" role="menu">
-                            <li><a href="#">Action</a></li>
-                            <li><a href="#">Another action</a></li>
-                            <li><a href="#">Something else here</a></li>
-                            <li class="divider"></li>
-                            <li class="dropdown-header">Nav header</li>
-                            <li><a href="#">Separated link</a></li>
-                            <li><a href="#">One more separated link</a></li>
-                        </ul>
-                    </li>
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="../navbar/">Default</a></li>
-                    <li><a href="../navbar-static-top/">Static top</a></li>
-                    <li class="active"><a href="./">Fixed top <span class="sr-only">(current)</span></a></li>
-                </ul>
+            -->
+            <div class="row">
+                <div id="headerLeft" class="col-md-3">
+                    <div>
+                        <h3 class="text-muted headerLeftItem"><span class="reformadLogo">
+                            <img src="images/reformad-logo-nobackground.png" style="width: 26px; height: 26px">
+                            <b><span class="color-yellow">Refor</span><span class="color-orange">Mad</span></b>
+                        </span></h3>
+                    </div>
+                    <div>
+                        <button onClick="pagesManager.goToPrevious()" type="button" class="btn btn-warning headerLeftItem">
+                            <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span> Ver apartado anterior
+                        </button>
+                    </div>
+                    <div>
+                        <button onClick="pagesManager.goToNext()" type="button" class="btn btn-warning headerLeftItem">
+                            <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span> Ver siguiente apartado
+                        </button>
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    <div>
+                        <h1>Apartado: <span id="sectionHeader"></span></h1>
+                        <p>Descripción: <span id="sectionDescription"></span></p>
+                    </div>
+                </div>
             </div>
-       
         </div>
     </nav>
+    <div id="pageLanding" class="demoPage" style="display:none">
+        <div class="demoPageHeader" style="display:none">
+            <h1>[TODO] Landing page
+            </h1>
+            <p>Landing page</p>
+        </div>
+        <div class="container">
+            <h1>[¿TODO?] ¿ METEMOS POSTER EN LANDING O PRE/POST LANDING ?</h1>
+        </div>
+    </div>
+    <!--
+    <div id="pageTableauBarrendero" class="demoPage" style="display:none">
+        <div class="demoPageHeader" style="display:none">
+            <h1>Tableau barrendero
+            </h1>
+            <p>desc</p>
+        </div>
+        <div class='tableauPlaceholder' style='width: 1000px; height: 1200px;'>
+            <noscript>
+                <a href='http:&#47;&#47;reformad.herokuapp.com&#47;'><img alt='Preguntas de un basurero ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;te&#47;testreformad&#47;preguntas_barrendero&#47;1_rss.png' style='border: none' /></a>
+            </noscript>
+            <object class='tableauViz' width='1000' height='1200' style='display:none;'>
+                <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' />
+                <param name='site_root' value='' />
+                <param name='name' value='testreformad&#47;preguntas_barrendero' />
+                <param name='tabs' value='no' />
+                <param name='toolbar' value='yes' />
+                <param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;te&#47;testreformad&#47;preguntas_barrendero&#47;1.png' />
+                <param name='animate_transition' value='yes' />
+                <param name='display_static_image' value='yes' />
+                <param name='display_spinner' value='yes' />
+                <param name='display_overlay' value='yes' />
+                <param name='display_count' value='yes' />
+                <param name='showTabs' value='y' />
+                <param name='showVizHome' value='no' />
+            </object>
+        </div>
+    </div>
     -->
+    <div id="pageTableauBarrenderoRanking" class="demoPage" style="display:none">
+        <div class="demoPageHeader" style="display:none">
+            <h1>Tableau barrendero ranking
+            </h1>
+            <p>desc</p>
+        </div>
+        <div class='tableauPlaceholder' style='width: 1000px; height: 1200px;'>
+            <noscript>
+                <a href='http:&#47;&#47;reformad.herokuapp.com&#47;'><img alt='Preguntas de un basurero ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;te&#47;testreformad&#47;basurero_raking&#47;1_rss.png' style='border: none' /></a>
+            </noscript>
+            <object class='tableauViz' width='1000' height='919' style='display:none;'>
+                <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' />
+                <param name='site_root' value='' />
+                <param name='name' value='testreformad&#47;basurero_raking' />
+                <param name='tabs' value='no' />
+                <param name='toolbar' value='yes' />
+                <param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;te&#47;testreformad&#47;basurero_raking&#47;1.png' />
+                <param name='animate_transition' value='yes' />
+                <param name='display_static_image' value='yes' />
+                <param name='display_spinner' value='yes' />
+                <param name='display_overlay' value='yes' />
+                <param name='display_count' value='yes' />
+                <param name='showTabs' value='y' />
+                <param name='showVizHome' value='no' />
+            </object>
+        </div>
+    </div>
+    <div id="pageTableauBarrenderoMapa" class="demoPage" style="display:none">
+        <div class="demoPageHeader" style="display:none">
+            <h1>Tableau barrendero mapa
+            </h1>
+            <p>desc</p>
+        </div>
+        <div class='tableauPlaceholder' style='width: 1000px; height: 1200px;'>
+            <noscript>
+                <a href='http:&#47;&#47;reformad.herokuapp.com&#47;'><img alt='Preguntas de un basurero ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;te&#47;testreformad&#47;basurero_mapa_ruta&#47;1_rss.png' style='border: none' /></a>
+            </noscript>
+            <object class='tableauViz' width='1000' height='919' style='display:none;'>
+                <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' />
+                <param name='site_root' value='' />
+                <param name='name' value='testreformad&#47;basurero_mapa_ruta' />
+                <param name='tabs' value='no' />
+                <param name='toolbar' value='yes' />
+                <param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;te&#47;testreformad&#47;basurero_mapa_ruta&#47;1.png' />
+                <param name='animate_transition' value='yes' />
+                <param name='display_static_image' value='yes' />
+                <param name='display_spinner' value='yes' />
+                <param name='display_overlay' value='yes' />
+                <param name='display_count' value='yes' />
+                <param name='showTabs' value='y' />
+                <param name='showVizHome' value='no' />
+            </object>
+        </div>
+    </div>
+    <!--
+    <div id="pageTableauVecino" class="demoPage" style="display:none">
+        <div class="demoPageHeader" style="display:none">
+            <h1>Tableau vecino
+            </h1>
+            <p>desc</p>
+        </div>
+        <div class='tableauPlaceholder' style='width: 1000px; height: 1200px;'>
+            <noscript>
+                <a href='http:&#47;&#47;reformad.herokuapp.com&#47;'><img alt='Preguntas que podemos responder a las vecinas :) ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;te&#47;testreformad&#47;preguntas_vecinas&#47;1_rss.png' style='border: none' /></a>
+            </noscript>
+            <object class='tableauViz' width='1000' height='1200' style='display:none;'>
+                <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' />
+                <param name='site_root' value='' />
+                <param name='name' value='testreformad&#47;preguntas_vecinas' />
+                <param name='tabs' value='no' />
+                <param name='toolbar' value='yes' />
+                <param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;te&#47;testreformad&#47;preguntas_vecinas&#47;1.png' />
+                <param name='animate_transition' value='yes' />
+                <param name='display_static_image' value='yes' />
+                <param name='display_spinner' value='yes' />
+                <param name='display_overlay' value='yes' />
+                <param name='display_count' value='yes' />
+                <param name='showTabs' value='y' />
+                <param name='showVizHome' value='no' />
+            </object>
+        </div>
+    </div>
+    -->
+    <div id="pageTableauVecinoProblema" class="demoPage" style="display:none">
+        <div class="demoPageHeader" style="display:none">
+            <h1>Tableau vecino problemas
+            </h1>
+            <p>desc</p>
+        </div>
+        <noscript>
+            <a href='http:&#47;&#47;reformad.herokuapp.com&#47;'><img alt='Preguntas que podemos responder a las vecinas :) ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;te&#47;testreformad&#47;usuario_problemahabitual&#47;1_rss.png' style='border: none' /></a>
+        </noscript>
+        <object class='tableauViz' width='1000' height='919' style='display:none;'>
+            <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' />
+            <param name='site_root' value='' />
+            <param name='name' value='testreformad&#47;usuario_problemahabitual' />
+            <param name='tabs' value='no' />
+            <param name='toolbar' value='yes' />
+            <param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;te&#47;testreformad&#47;usuario_problemahabitual&#47;1.png' />
+            <param name='animate_transition' value='yes' />
+            <param name='display_static_image' value='yes' />
+            <param name='display_spinner' value='yes' />
+            <param name='display_overlay' value='yes' />
+            <param name='display_count' value='yes' />
+            <param name='showTabs' value='y' />
+            <param name='showVizHome' value='no' />
+        </object>
+    </div>
+    <div id="pageTableauVecinoGrupo" class="demoPage" style="display:none">
+        <div class="demoPageHeader" style="display:none">
+            <h1>Tableau vecino grupo
+            </h1>
+            <p>desc</p>
+        </div>
+        <noscript>
+            <a href='http:&#47;&#47;reformad.herokuapp.com&#47;'><img alt='Preguntas que podemos responder a las vecinas :) ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;te&#47;testreformad&#47;usuario_grupolimpieza&#47;1_rss.png' style='border: none' /></a>
+        </noscript>
+        <object class='tableauViz' width='1000' height='919' style='display:none;'>
+            <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' />
+            <param name='site_root' value='' />
+            <param name='name' value='testreformad&#47;usuario_grupolimpieza' />
+            <param name='tabs' value='no' />
+            <param name='toolbar' value='yes' />
+            <param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;te&#47;testreformad&#47;usuario_grupolimpieza&#47;1.png' />
+            <param name='animate_transition' value='yes' />
+            <param name='display_static_image' value='yes' />
+            <param name='display_spinner' value='yes' />
+            <param name='display_overlay' value='yes' />
+            <param name='display_count' value='yes' />
+            <param name='showTabs' value='y' />
+            <param name='showVizHome' value='no' />
+        </object>
+    </div>
+    <div id="pageTableauVecinoElegir" class="demoPage" style="display:none">
+        <div class="demoPageHeader" style="display:none">
+            <h1>Tableau vecino elegir
+            </h1>
+            <p>desc</p>
+        </div>
+        <noscript>
+            <a href='http:&#47;&#47;reformad.herokuapp.com&#47;'><img alt='Preguntas que podemos responder a las vecinas :) ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;te&#47;testreformad&#47;usuario_elegirbarrio&#47;1_rss.png' style='border: none' /></a>
+        </noscript>
+        <object class='tableauViz' width='1000' height='919' style='display:none;'>
+            <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' />
+            <param name='site_root' value='' />
+            <param name='name' value='testreformad&#47;usuario_elegirbarrio' />
+            <param name='tabs' value='no' />
+            <param name='toolbar' value='yes' />
+            <param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;te&#47;testreformad&#47;usuario_elegirbarrio&#47;1.png' />
+            <param name='animate_transition' value='yes' />
+            <param name='display_static_image' value='yes' />
+            <param name='display_spinner' value='yes' />
+            <param name='display_overlay' value='yes' />
+            <param name='display_count' value='yes' />
+            <param name='showTabs' value='y' />
+            <param name='showVizHome' value='no' />
+        </object>
+    </div>
+    <!-- 
+    <div id="pageTableauHabitual" class="demoPage" style="display:none">
+        <div class="demoPageHeader" style="display:none">
+            <h1>Tableau habitual
+            </h1>
+            <p>desc</p>
+        </div>
+        <noscript>
+            <a href='http:&#47;&#47;reformad.herokuapp.com&#47;'><img alt='usuario_problemahabitual ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;te&#47;testreformad&#47;usuario_problemahabitual&#47;1_rss.png' style='border: none' /></a>
+        </noscript>
+        <object class='tableauViz' width='1000' height='919' style='display:none;'>
+            <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' />
+            <param name='site_root' value='' />
+            <param name='name' value='testreformad&#47;usuario_problemahabitual' />
+            <param name='tabs' value='no' />
+            <param name='toolbar' value='yes' />
+            <param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;te&#47;testreformad&#47;usuario_problemahabitual&#47;1.png' />
+            <param name='animate_transition' value='yes' />
+            <param name='display_static_image' value='yes' />
+            <param name='display_spinner' value='yes' />
+            <param name='display_overlay' value='yes' />
+            <param name='display_count' value='yes' />
+            <param name='showVizHome' value='no' />
+            <param name='showTabs' value='y' />
+            <param name='bootstrapWhenNotified' value='true' />
+        </object>
+    </div>
+    -->
+    <div id="pageReforMadApp" class="demoPage" style="display:none">
+        <div class="demoPageHeader" style="display:none">
+            <h1>Prototipo para recolecta de datos
+                "Con B de Basura"
+            </h1>
+            <p>Prototipo de aplicación para la recolecta de los datos en los que se basan los diversos apartados del proyecto</p>
+        </div>
+        <iframe src="/#/Map"></iframe>
+    </div>
+    <!-- 
     <div class="container">
-        <h1>Dashboard1</h1>
-        <div>
-            <div class='tableauPlaceholder' style='width: 1200; height: 955px;'>
-                <noscript>
-                    <a href='http:&#47;&#47;reformad.herokuapp.com&#47;'><img alt=' ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;te&#47;testreformad&#47;Dashboard1&#47;1_rss.png' style='border: none' /></a>
-                </noscript>
-                <object class='tableauViz' width='1200' height='955' style='display:none;'>
-                    <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' />
-                    <param name='site_root' value='' />
-                    <param name='name' value='testreformad&#47;Dashboard1' />
-                    <param name='tabs' value='yes' />
-                    <param name='toolbar' value='yes' />
-                    <param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;te&#47;testreformad&#47;Dashboard1&#47;1.png' />
-                    <param name='animate_transition' value='yes' />
-                    <param name='display_static_image' value='yes' />
-                    <param name='display_spinner' value='yes' />
-                    <param name='display_overlay' value='yes' />
-                    <param name='display_count' value='yes' />
-                    <param name='showVizHome' value='no' />
-                    <param name='showTabs' value='y' />
-                    <param name='bootstrapWhenNotified' value='true' />
-                </object>
-            </div>
-        </div>
-
-        <h1>Dashboard2</h1>
-        <div>
-            <div class='tableauPlaceholder' style='width: 1200; height: 955px;'>
-                <noscript>
-                    <a href='http:&#47;&#47;reformad.herokuapp.com&#47;'><img alt=' ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;te&#47;testreformad&#47;Dashboard2&#47;1_rss.png' style='border: none' /></a>
-                </noscript>
-                <object class='tableauViz' width='1200' height='955' style='display:none;'>
-                    <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' />
-                    <param name='site_root' value='' />
-                    <param name='name' value='testreformad&#47;Dashboard2' />
-                    <param name='tabs' value='no' />
-                    <param name='toolbar' value='yes' />
-                    <param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;te&#47;testreformad&#47;Dashboard2&#47;1.png' />
-                    <param name='animate_transition' value='yes' />
-                    <param name='display_static_image' value='yes' />
-                    <param name='display_spinner' value='yes' />
-                    <param name='display_overlay' value='yes' />
-                    <param name='display_count' value='yes' />
-                    <param name='showVizHome' value='no' />
-                    <param name='showTabs' value='y' />
-                    <param name='bootstrapWhenNotified' value='true' />
-                </object>
-            </div>
-        </div>
-        <!--
-        <h1>tableau_embed_Dashboard5</h1>
-        <div id="tableau_embed_Story1">
-            <div class='tableauPlaceholder'>
-                <noscript>
-                    <a href='#'><img alt='BdeBasura ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;te&#47;testreformad&#47;Dashboard5&#47;1_rss.png' style='border: none' /></a>
-                </noscript>
-                <object class='tableauViz' width='982' height='742' style='display:none;'>
-                    <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' />
-                    <param name='site_root' value='' />
-                    <param name='name' value='testreformad&#47;Historia2' />
-                    <param name='tabs' value='no' />
-                    <param name='toolbar' value='yes' />
-                    <param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;te&#47;testreformad&#47;Dashboard5&#47;1.png' />
-                    <param name='animate_transition' value='yes' />
-                    <param name='display_static_image' value='yes' />
-                    <param name='display_spinner' value='yes' />
-                    <param name='display_overlay' value='yes' />
-                    <param name='display_count' value='yes' />
-                    <param name='showVizHome' value='no' />
-                    <param name='showTabs' value='y' />
-                    <param name='bootstrapWhenNotified' value='true' />
-                </object>
-            </div>
-        </div>
-        Haybasura
-        <h1>tableau_embed_Story1</h1>
-        <div id="tableau_embed_Story1">
-            <div class='tableauPlaceholder'>
-                <noscript>
-                    <a href='#'><img alt='BdeBasura ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;9F&#47;9FFCWDZZ4&#47;1_rss.png' style='border: none' /></a>
-                </noscript>
-                <object class='tableauViz' width='1200' height='742' style='display:none;'>
-                    <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' />
-                    <param name='path' value='shared&#47;9FFCWDZZ4' />
-                    <param name='toolbar' value='yes' />
-                    <param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;9F&#47;9FFCWDZZ4&#47;1.png' />
-                    <param name='animate_transition' value='yes' />
-                    <param name='display_static_image' value='yes' />
-                    <param name='display_spinner' value='yes' />
-                    <param name='display_overlay' value='yes' />
-                    <param name='display_count' value='yes' />
-                    <param name='showVizHome' value='no' />
-                    <param name='showTabs' value='y' />
-                    <param name='bootstrapWhenNotified' value='true' />
-                </object>
-            </div>
-        </div>
-        <h1>tableau_embed_Story2</h1>
-        <div id="tableau_embed_Story2">
-            <div class='tableauPlaceholder' style='width: 982px; height: 742px;'>
-                <noscript>
-                    <a href='#'><img alt='BdeBasura ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;te&#47;testreformad&#47;Historia2&#47;1_rss.png' style='border: none' /></a>
-                </noscript>
-                <object class='tableauViz' width='982' height='742' style='display:none;'>
-                    <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' />
-                    <param name='site_root' value='' />
-                    <param name='name' value='testreformad&#47;Historia2' />
-                    <param name='tabs' value='no' />
-                    <param name='toolbar' value='yes' />
-                    <param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;te&#47;testreformad&#47;Historia2&#47;1.png' />
-                    <param name='animate_transition' value='yes' />
-                    <param name='display_static_image' value='yes' />
-                    <param name='display_spinner' value='yes' />
-                    <param name='display_overlay' value='yes' />
-                    <param name='display_count' value='yes' />
-                    <param name='showVizHome' value='no' />
-                    <param name='showTabs' value='y' />
-                    <param name='bootstrapWhenNotified' value='true' />
-                </object>
-            </div>
-        </div>
+    </div>
     -->
+    <div id="footer">
+        <h3>
+        Proyecto
+        <span class="reformadLogo">
+            <img src="images/reformad-logo-nobackground.png" style="width: 26px; height: 26px">
+            <b><span class="color-yellow">Refor</span><span class="color-orange">Mad</span></b>
+        </span>
+          para el Visualizar15 del MediaLab Prado
+        </h3>
     </div>
     <!-- /container -->
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="bower_components/jquery/dist/jquery.js"></script>
-    <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
-    <script type='text/javascript' src='https://public.tableau.com/javascripts/api/viz_v1.js'></script>
+    <script src='https://public.tableau.com/javascripts/api/viz_v1.js'></script>
+    <script src="demo_wizard.js"></script>
 </body>
 
 </html>
