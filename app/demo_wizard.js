@@ -5,7 +5,7 @@ function PagesManager() {
     this.init = function init() {
         self.initPages();
 
-        self.pageOrder = ['pageLanding', 'pageTableauVecinoProblema', 'pageTableauVecinoGrupo', 'pageTableauVecinoElegir', 'pageTableauBarrenderoRanking', 'pageTableauBarrenderoMapa', 'pageReforMadApp'];
+        self.pageOrder = ['pageLanding', 'pageTableauVecinoIntro', 'pageTableauVecinoElegir', 'pageReforMadApp', 'pageTableauVecinoProblema', 'pageTableauVecinoGrupo', 'pageTableauBarrenderoIntro', 'pageTableauBarrenderoRanking', 'pageTableauBarrenderoMapa', 'pageFin'];
 
         self.goToPage(self.pageOrder[0]);
     };

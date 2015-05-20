@@ -114,6 +114,55 @@ iframe {
     border-radius: 10px;
 }
 
+.btn-reformad {
+    color: #403000;
+    background-color: #f0ad4e;
+    border-color: #403000;
+}
+/* from:http://stackoverflow.com/questions/13955163/imitating-a-blink-tag-with-css3-animations; */
+
+.blink:not(:hover) {
+    animation: blink 2s infinite;
+    -webkit-animation: blink 2s infinite;
+}
+
+@keyframes blink {
+    to {
+        background-color: #EB7F4B;
+    }
+}
+
+@-webkit-keyframes blink {
+    to {
+        background-color: #EB7F4B;
+    }
+}
+
+.btn-reformad:hover {
+    /*
+  transition: background-color 2s;
+  -webkit-transition: background-color 2s;
+  background-color: #33FF41;
+  */
+    
+    animation: sucioOnHover 1s;
+    animation-fill-mode:forwards;
+    -webkit-animation: sucioOnHover 1s;
+    -webkit-animation-fill-mode:forwards;
+}
+
+@keyframes sucioOnHover {
+    to {
+        background-color: #33FF41;
+    }
+}
+
+@-webkit-keyframes sucioOnHover {
+    to {
+        background-color: #33FF41;
+    }
+}
+
 /***********************************************************************
     ***
     *** Tableau
@@ -139,6 +188,36 @@ iframe {
 .navbar-default {
 	background-color: #FCEEC2;
 	border-bottom: solid 5px #EA6220;
+}
+
+/***********************************************************************
+    ***
+    *** Page/Sections CSS
+    ***
+    ************************************************************************/
+
+#pageTableauVecinoIntro img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: auto;
+    height: 350px;
+}
+
+#pageTableauBarrenderoIntro img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: auto;
+    height: 350px;
+}
+
+#pageFin img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: auto;
+    height: 350px;
 }
 
 /***********************************************************************

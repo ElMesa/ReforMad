@@ -64,7 +64,7 @@
                         </button>
                     </div>
                     <div>
-                        <button onClick="pagesManager.goToNext()" type="button" class="btn btn-warning headerLeftItem">
+                        <button onClick="pagesManager.goToNext()" type="button" class="btn btn-reformad blink headerLeftItem">
                             <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span> Ver siguiente apartado
                         </button>
                     </div>
@@ -78,14 +78,93 @@
             </div>
         </div>
     </nav>
-    <div id="pageLanding" class="demoPage" style="display:none">
+    <div id="pageLanding" class="demoPage">
         <div class="demoPageHeader" style="display:none">
-            <h1>[TODO] Landing page
+            <h1>ReforMad: Los urbanitas podemos mejorar Madrid
             </h1>
-            <p>Landing page</p>
+            <p>Bienvenido a la exposición Visualizar15 del MediaLab Prado</p>
         </div>
-        <div class="container">
-            <h1>[¿TODO?] ¿ METEMOS POSTER EN LANDING O PRE/POST LANDING ?</h1>
+        <div class="col-md-offset-1 col-md-10" style="padding-bottom:90px">
+            <div style="text-align: center">
+                <h1>ReforMad: Los urbanitas podemos mejorar Madrid</h1>
+                <p><b>Proyecto orientado a conseguir una ciudad más limpia gracias a la participación ciudadana</b></p>
+                <br>
+                <div class="col-md-12">
+                    <div class="col-md-6">
+                        <img style="width:auto;height:300px" src="demo_wizard-reforMad-logo.png">
+                    </div>
+                    <div class="col-md-6">
+                        <img style="width:auto;height:300px" src="demo_wizard-poster.jpg">
+                    </div>
+                </div>
+                <br>
+                <br>
+                <p>El proyecto ReforMad te propone un viaje en la piel de dos ciudadanos que hacen uso de los servicios de ReforMad para conseguir una ciudad más limpia. Dado que la información actual sobre dichas incidencias es insuficiente y desactualizada hemos realizado una simulación de datos para que el ciudadano pueda comprobar el potencial de la aplicación desarrollada y visualizaciones asociadas a este proyecto.</p>
+            </div>
+            <br>
+            <div>
+                <h2>Objetivos:</h2>
+                <p>Dar voz a los ciudadanos al respecto de problemas con zonas sucias de la ciudad Permitir hacer un seguimiento de la evolución de la limpieza de las zonas Ayudar a los servicios de limpieza a focalizar sus esfuerzos allí donde hace falta Reivindicar la exposición de datos abiertos, completos y actualizados sobre incidencias de limpiez</p>
+            </div>
+            <br>
+            <div>
+                <h2>Herramientas y materiales:</h2>
+                <div>
+                    <b>Desarrollo web:</b>
+                    <div class="col-md-offset-1 col-md-12">HTML5, CSS3, Bootstrap, Javascript, JQuery, Leaflet, Mapbox, CartoDB, AngularJS, AJAX, SPA, Java, Java Jersey, RESTful API, JSON, Postgre SQL, Heroku, Git, Github, Github issue tracker, Evolus Pencil.
+                    </div>
+                </div>
+                <div>
+                    <b>Otros:</b>
+                    <div class="col-md-offset-1 col-md-12">Trello, Google docs, Google OpenRefine, Tableau, FreeHand
+                    </div </div>
+                </div>
+                <br>
+                <div>
+                    <h2>Enlaces:</h2>
+                    <table class="table table-stripped">
+                        <thead>
+                            <tr>
+                                <th class="col-md-3">Recurso</th>
+                                <th>Enlace</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Web de la exposicion</td>
+                                <td><a href="http://reformad.herokuapp.com/demo_wizard.html">http://reformad.herokuapp.com/demo_wizard.html</a></td>
+                            </tr>
+                            <tr>
+                                <td>Tareas</td>
+                                <td><a href="https://trello.com/b/BICF3MOZ/reformad-tasks">https://trello.com/b/BICF3MOZ/reformad-tasks</a></td>
+                            </tr>
+                            <tr>
+                                <td>Tareas software</td>
+                                <td><a href="https://github.com/ElMesa/ReforMad">https://github.com/ElMesa/ReforMad</a></td>
+                            </tr>
+                            <tr>
+                                <td>Repositorio documental</td>
+                                <td><a href="https://drive.google.com/folderview?id=0B2NepquLNE6CfnFQbEViM01oN0ZxQzc0RjJDekpaUlhSNWc1RFJNTkZjTkN3bDZmYnA2cjA&usp=sharing">https://drive.google.com/folderview?id=0B2NepquLNE6CfnFQbEViM01oN0ZxQzc0RjJDekpaUlhSNWc1RFJNTkZjTkN3bDZmYnA2cjA&usp=sharing</a></td>
+                            </tr>
+                            <tr>
+                                <td>Repositorio software - Fontend</td>
+                                <td><a href="https://github.com/ElMesa/ReforMad">https://github.com/ElMesa/ReforMad</a></td>
+                            </tr>
+                            <tr>
+                                <td>Repositorio software - Backend</td>
+                                <td><a href="https://github.com/ElMesa/ReforMad-api">https://github.com/ElMesa/ReforMad-api</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <br>
+                <div style="text-align:center">
+                    <h2>Proyecto realizado por:</h2>
+                    <p>Samuel Ortiz Reina (promotor, desarrollador, visualizaciones)
+                        <br> Leda Duelo (user experience, análisis de datos, visualizaciones)
+                        <br> Andrés Pérez (diseño gráfico)</p>
+                </div>
+            </div>
         </div>
     </div>
     <!--
@@ -117,11 +196,21 @@
         </div>
     </div>
     -->
+    <div id="pageTableauBarrenderoIntro" class="demoPage" style="display:none">
+        <div class="demoPageHeader" style="display:none">
+            <h1>Hola, soy Abel y trabajo manteniendo la ciudad aún más limpia
+            </h1>
+            <p>Esta sección cuenta como el proyecto ReforMad puede ser de utilidad para Abel, un trabajador de los servicios de limpieza de Madrid</p>
+        </div>
+        <div class="col-md-offset-4 col-md-4 pageIntro">
+            <img src="demo_wizard_barrendero.jpg">
+        </div>
+    </div>
     <div id="pageTableauBarrenderoRanking" class="demoPage" style="display:none">
         <div class="demoPageHeader" style="display:none">
-            <h1>Tableau barrendero ranking
+            <h1>[Abel] ¡A trabajar! pero... ¿hoy donde llevo el camión?
             </h1>
-            <p>desc</p>
+            <p>La tabla permite detectar barrios con mayor indice de incidencias sobre suciedad</p>
         </div>
         <div class='tableauPlaceholder' style='width: 1000px; height: 1200px;'>
             <noscript>
@@ -146,9 +235,9 @@
     </div>
     <div id="pageTableauBarrenderoMapa" class="demoPage" style="display:none">
         <div class="demoPageHeader" style="display:none">
-            <h1>Tableau barrendero mapa
+            <h1>[Abel] Mmmm... ese barrio está sucio, pero por ¿donde concretamente debería pasar?
             </h1>
-            <p>desc</p>
+            <p>El mapa de los "puntos negros" de la suciedad aporta detalle para dirigir los esfuerzos de limpieza</p>
         </div>
         <div class='tableauPlaceholder' style='width: 1000px; height: 1200px;'>
             <noscript>
@@ -200,11 +289,21 @@
         </div>
     </div>
     -->
+    <div id="pageTableauVecinoIntro" class="demoPage" style="display:none">
+        <div class="demoPageHeader" style="display:none">
+            <h1>Hola, soy Juan y ¡me voy a vivir a Madrid!
+            </h1>
+            <p>Esta sección cuenta como el proyecto ReforMad puede ser de utilidad para Juan tanto antes de venir a Madrid como una vez aquí</p>
+        </div>
+        <div class="col-md-offset-4 col-md-4 pageIntro">
+            <img src="demo_wizard-juan_trash_can.png">
+        </div>
+    </div>
     <div id="pageTableauVecinoProblema" class="demoPage" style="display:none">
         <div class="demoPageHeader" style="display:none">
-            <h1>Tableau vecino problemas
+            <h1>[Juan] Ya he informado sobre la suciedad pero ¿esto es habitual?
             </h1>
-            <p>desc</p>
+            <p>Puedes explorar el problema en tu barrio gracias a esta visualización</p>
         </div>
         <noscript>
             <a href='http:&#47;&#47;reformad.herokuapp.com&#47;'><img alt='Preguntas que podemos responder a las vecinas :) ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;te&#47;testreformad&#47;usuario_problemahabitual&#47;1_rss.png' style='border: none' /></a>
@@ -227,9 +326,9 @@
     </div>
     <div id="pageTableauVecinoGrupo" class="demoPage" style="display:none">
         <div class="demoPageHeader" style="display:none">
-            <h1>Tableau vecino grupo
+            <h1>[Juan] Quiero un barrio más limpio ¿estoy solo en esta cruzada?
             </h1>
-            <p>desc</p>
+            <p>Esta visualización permite comprobar la cantidad de usuarios colaborando en cada barrio</p>
         </div>
         <noscript>
             <a href='http:&#47;&#47;reformad.herokuapp.com&#47;'><img alt='Preguntas que podemos responder a las vecinas :) ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;te&#47;testreformad&#47;usuario_grupolimpieza&#47;1_rss.png' style='border: none' /></a>
@@ -252,9 +351,8 @@
     </div>
     <div id="pageTableauVecinoElegir" class="demoPage" style="display:none">
         <div class="demoPageHeader" style="display:none">
-            <h1>Tableau vecino elegir
-            </h1>
-            <p>desc</p>
+            <h1>[Juan] ¿Dónde me voy a vivir?</h1>
+            <p>Visualización que puede ayudarte a tomar la decisión de que barrio elegir para vivir.</p>
         </div>
         <noscript>
             <a href='http:&#47;&#47;reformad.herokuapp.com&#47;'><img alt='Preguntas que podemos responder a las vecinas :) ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;te&#47;testreformad&#47;usuario_elegirbarrio&#47;1_rss.png' style='border: none' /></a>
@@ -305,12 +403,40 @@
     -->
     <div id="pageReforMadApp" class="demoPage" style="display:none">
         <div class="demoPageHeader" style="display:none">
-            <h1>Prototipo para recolecta de datos
-                "Con B de Basura"
+            <h1>[Juan] Pero ¿y si mi barrio está sucio?
             </h1>
-            <p>Prototipo de aplicación para la recolecta de los datos en los que se basan los diversos apartados del proyecto</p>
+            <p>El prototipo "Con B de Basura" del proyecto ReforMad puede ayudarte a mantener tu barrio limpio al permitirte notificar que zonas estan sucias</p>
         </div>
         <iframe src="/#/Map"></iframe>
+    </div>
+    <div id="pageFin" class="demoPage" style="display:none">
+        <div class="demoPageHeader" style="display:none">
+            <h1>Fin de la presentación
+            </h1>
+            <p></p>
+        </div>
+        <div class="row">
+            <div class="col-md-offset-1 col-md-5">
+                <img src="demo_wizard-reforMad-logo.png">
+            </div>
+            <div class="col-md-5">
+                <h1>Fin de la presentación</h1>
+                <p>
+                    El equipo de ReforMad les da las gracias por interesarse por este proyecto.
+                </p>
+                <p>
+                    Esperamos que la información expuesta le haya resultado interesante.
+                </p>
+                <br>
+                <p>
+                    Para que este proyecto cobre vida es necesario reivindicar que los datos expuestos por la ciudad de Madrid sean lo <b>suficientemente completos y actualizados como para poder extraer la información necesaria en estas visualizaciones</b>.
+                </p>
+                <br>
+                <p>
+                    Que tengan un feliz día, rodeado de limpieza y salubridad.
+                </p>
+            </div>
+        </div>
     </div>
     <!-- 
     <div class="container">
